@@ -56,9 +56,8 @@ __device__ void  gaussElimination(int mat_order, double *mat) {
 }
 
 
-void read_matrix(double *mat, FILE *file, int mat_order) {
-    for (int j = 0; j < (mat_order * mat_order); ++j) {
-//        printf("here");
+void read_matrix(double *mat, FILE *file, int mat_order, int mat_size) {
+    for (int j = 0; j < (mat_order * mat_order*mat_size); ++j) {
         bytes_read = fread(&mat[j], sizeof(double), 1, file);
     }
 }

@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "matrix_processor.h"
 
+//nvcc -O2 -Wno-deprecated-gpu-targets -include matrix_processor.c -o part1 main.cu
 
 /*
  * A simple introduction to programming in CUDA. This program prints "Hello

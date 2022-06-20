@@ -15,7 +15,7 @@
 
 __device__ void gaussElimination(int mat_order, double *mat);
 
-__device__ double determinant(int mat_order, double *mat);
+__device__ double determinant(int mat_order, double *mat, int swapCount);
 
-extern void read_matrix(double *mat, FILE *file, int mat_order);
+extern void read_matrix(double *mat, FILE *file, int mat_order, int mat_size);
 #endif //MATRIX_PROCESSOR_H

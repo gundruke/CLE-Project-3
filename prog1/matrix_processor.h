@@ -13,9 +13,9 @@
 #ifndef MATRIX_PROCESSOR_H
 #define MATRIX_PROCESSOR_H
 
-__device__ void gaussElimination(int mat_order, double *mat);
+int gaussEliminationCPU(int mat_order, double *mat);
+double determinantCPU(int mat_order, double *mat);
 
 __device__ double determinant(int mat_order, double *mat, int swapCount);
-
 extern void read_matrix(double *mat, FILE *file, int mat_order, int mat_size);
 #endif //MATRIX_PROCESSOR_H

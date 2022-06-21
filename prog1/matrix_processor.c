@@ -25,37 +25,71 @@ extern size_t bytes_read;
  *  \param utf8char The pointer to the char array where the UTF-8 character will be stored
  */
 
-
-
-
-__device__ void  gaussElimination(int mat_order, double *mat) {
+// CPU Code
+int gaussEliminationCPU(int mat_order, double *mat)
+{
     int i, j, k;
-
-        //Begin Gauss Elimination
-
-
-    for (i = 0; i < mat_order - 1; i++) {
-
-        for (k = i + 1; k < mat_order; k++) {
+    int swapCount = 0;
+    for (i = 0; i < mat_order - 1; i++)
+    {
+        // Partial Pivoting
+        for (k = i + 1; k < mat_order; k++)
+        {
+            // If diagonal element(absolute value) is smaller than any of the terms below it
+            if (fabs(mat[(i * mat_order) + i]) < fabs(mat[(k * mat_order) + i]))
+            {
+                // Swap the rows
+                swapCount++;
+                for (j = 0; j < mat_order; j++)
+                {
+                    double temp;
+                    temp = mat[(i * mat_order) + j];
+                    mat[(i * mat_order) + j] = mat[(k * mat_order) + j];
+                    mat[(k * mat_order) + j] = temp;
+                }
+            }
+        }
+        // Begin Gauss Elimination
+        for (k = i + 1; k < mat_order; k++)
+        {
             double term = mat[(k * mat_order) + i] / mat[(i * mat_order) + i];
-            for (j = 0; j < mat_order; j++) {
+            for (j = 0; j < mat_order; j++)
+            {
                 mat[(k * mat_order) + j] = mat[(k * mat_order) + j] - term * mat[(i * mat_order) + j];
             }
         }
     }
-
+    return swapCount;
 }
 
- __device__ double determinant(int mat_order, double *mat, int swapCount) {
+
+double determinantCPU(int mat_order, double *mat)
+{
     double det = 1;
     int i;
-    for (i = 0; i < mat_order; i++) {
+    int swapCount = gaussEliminationCPU(mat_order, mat);
+    for (i = 0; i < mat_order; i++)
+    {
         det = det * mat[(i * mat_order) + i];
     }
     return det * pow(-1, swapCount);
 }
 
 
+
+
+// GPU Code
+ __device__ double determinant(int mat_order, double *mat, int swapCount) {
+    double det = 1;
+    int i;
+
+    for (i = 0; i < mat_order; i++) {
+        det = det * mat[(i * mat_order) + i];
+    }
+    return det * pow(-1, swapCount);
+}
+
+// Common
 void read_matrix(double *mat, FILE *file, int mat_order, int mat_size) {
     for (int j = 0; j < (mat_order * mat_order*mat_size); ++j) {
         bytes_read = fread(&mat[j], sizeof(double), 1, file);

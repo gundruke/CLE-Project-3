@@ -36,26 +36,26 @@ int gaussEliminationCPU(int mat_order, double *mat)
         for (k = i + 1; k < mat_order; k++)
         {
             // If diagonal element(absolute value) is smaller than any of the terms below it
-            if (fabs(mat[(i * mat_order) + i]) < fabs(mat[(k * mat_order) + i]))
+            if (fabs(mat[(i * mat_order) + i]) < fabs(mat[(i * mat_order) + k]))
             {
-                // Swap the rows
+                // Swap the columns
                 swapCount++;
                 for (j = 0; j < mat_order; j++)
                 {
                     double temp;
-                    temp = mat[(i * mat_order) + j];
-                    mat[(i * mat_order) + j] = mat[(k * mat_order) + j];
-                    mat[(k * mat_order) + j] = temp;
+                    temp = mat[(j * mat_order) + i];
+                    mat[(j * mat_order) + i] = mat[(j * mat_order) + k];
+                    mat[(j * mat_order) + k] = temp;
                 }
             }
         }
         // Begin Gauss Elimination
         for (k = i + 1; k < mat_order; k++)
         {
-            double term = mat[(k * mat_order) + i] / mat[(i * mat_order) + i];
+            double term = mat[(i * mat_order) + k] / mat[(i * mat_order) + i];
             for (j = 0; j < mat_order; j++)
             {
-                mat[(k * mat_order) + j] = mat[(k * mat_order) + j] - term * mat[(i * mat_order) + j];
+                mat[(j * mat_order) + k] = mat[(j * mat_order) + k] - term * mat[(j * mat_order) + i];
             }
         }
     }
@@ -95,3 +95,4 @@ void read_matrix(double *mat, FILE *file, int mat_order, int mat_size) {
         bytes_read = fread(&mat[j], sizeof(double), 1, file);
     }
 }
+

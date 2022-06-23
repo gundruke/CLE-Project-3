@@ -87,7 +87,6 @@ int main(int argc, char **argv) {
                     cpu_results = (double *) malloc(sizeof(double) * m);
                     CHECK(cudaMalloc((void **) &cuda_results, sizeof(double) * m));
 
-                    //TODO: proper define grid, not sure if its correct way
                     blockDimX = n;
                     blockDimY = 1;
                     blockDimZ = 1;

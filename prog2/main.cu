@@ -88,18 +88,18 @@ int main(int argc, char **argv) {
                     cpu_results = (double *) malloc(sizeof(double) * m);
                     CHECK(cudaMalloc((void **) &cuda_results, sizeof(double) * m));
 
-
                     blockDimX = n;
                     blockDimY = 1;
                     blockDimZ = 1;
+                    dim3 block(blockDimX, blockDimY, blockDimZ);
+
                     gridDimX = m;
                     gridDimY = 1;
                     gridDimZ = 1;
+                    dim3 grid(gridDimX, gridDimY, gridDimZ);
 
-                    dim3 grid (gridDimX, gridDimY, gridDimZ);
-                    dim3 block (blockDimX, blockDimY, blockDimZ);
-
-                    printf("The CUDA kernel <<<(%d,%d,%d), (%d,%d,%d)>>> \n\n\n", gridDimX, gridDimY, gridDimZ, blockDimX, blockDimY, blockDimZ);
+                    printf("The CUDA kernel <<<(%d,%d,%d), (%d,%d,%d)>>> \n\n\n", gridDimX, gridDimY, gridDimZ,
+                           blockDimX, blockDimY, blockDimZ);
                     printf("Initialization and opening of file took %.3e seconds\n", get_delta_time());
 
                     (void) get_delta_time();
@@ -121,8 +121,8 @@ int main(int argc, char **argv) {
                     printf("\n###########   Processing on CPU   ###########\n");
 
                     for (j = 0; j < m; j++) {
-                        single_matrix = (double *)malloc(mat_size);
-                        memcpy(single_matrix, &matrix[n*n*j], mat_size);
+                        single_matrix = (double *) malloc(mat_size);
+                        memcpy(single_matrix, &matrix[n * n * j], mat_size);
 
                         cpu_results[j] = determinantCPU(n, single_matrix);
                         free(single_matrix);
@@ -132,14 +132,17 @@ int main(int argc, char **argv) {
                     printf("Processing of matrix on CPU took %.3e seconds\n\n", get_delta_time());
 
                     for (j = 0; j < m; j++) {
-                        printf("Determinant for Matrix %d \t: (GPU) %e \t: (CPU) %e \n", j + 1, results[j], cpu_results[j]);
+                        printf("Determinant for Matrix %d \t: (GPU) %e \t: (CPU) %e \n", j + 1, results[j],
+                               cpu_results[j]);
                     }
 
-                    if(cosine_similarity(results,cpu_results,m) >= 0.99999999999999999999999)
+                    //printf("%lf\n", cosine_similarity(results, cpu_results, m));
+
+
+                    if ((float)cosine_similarity(results, cpu_results, m) >= 0.99999999999999999999999)
                         printf("\nGPU and CPU determinants are the same.\n\n");
                     else
                         printf("\nGPU and CPU determinants are different.\n\n");
-
 
 
                     fclose(file);
@@ -204,40 +207,44 @@ __global__ void matrixProcessor(double *matrix, int matrix_order, double *result
 
     for (i = 0; i < matrix_order - 1; i++) {
         //Partial Pivoting
+
         for (k = i + 1; k < matrix_order; k++) {
             //If diagonal element(absolute value) is smaller than any of the terms below it
+
             if (fabs(matrix[(i * matrix_order) + i]) < fabs(matrix[(i * matrix_order) + k])) {
                 //Swap the rows
                 swapCount++;
+                __syncthreads();
 
                 double temp;
                 temp = matrix[(tid * matrix_order) + i];
                 matrix[(tid * matrix_order) + i] = matrix[(tid * matrix_order) + k];
                 matrix[(tid * matrix_order) + k] = temp;
-                __syncthreads();
             }
 
             __syncthreads();
             term = matrix[(i * matrix_order) + k] / matrix[(i * matrix_order) + i];
-            matrix[(tid * matrix_order) + k] = matrix[(tid * matrix_order) + k] - term * matrix[(tid * matrix_order) + i];
+            __syncthreads();
+            matrix[(tid * matrix_order) + k] =
+                    matrix[(tid * matrix_order) + k] - term * matrix[(tid * matrix_order) + i];
             __syncthreads();
 
         }
     }
+    //__syncthreads();
 
     results[bid] = determinant(matrix_order, matrix, swapCount);
 }
 
 
-double cosine_similarity(double *A, double *B, unsigned int Vector_Length)
-{
-    double dot = 0.0, denom_a = 0.0, denom_b = 0.0 ;
-    for(unsigned int i = 0u; i < Vector_Length; ++i) {
-        dot += A[i] * B[i] ;
-        denom_a += A[i] * A[i] ;
-        denom_b += B[i] * B[i] ;
+double cosine_similarity(double *A, double *B, unsigned int Vector_Length) {
+    double dot = 0.0, denom_a = 0.0, denom_b = 0.0;
+    for (unsigned int i = 0u; i < Vector_Length; ++i) {
+        dot += A[i] * B[i];
+        denom_a += A[i] * A[i];
+        denom_b += B[i] * B[i];
     }
-    return dot / (sqrt(denom_a) * sqrt(denom_b)) ;
+    return dot / (sqrt(denom_a) * sqrt(denom_b));
 }
 
 

@@ -91,12 +91,13 @@ int main(int argc, char **argv) {
                     blockDimX = n;
                     blockDimY = 1;
                     blockDimZ = 1;
-                    gridDimX = m;
+                    dim3 block (blockDimX, blockDimY, blockDimZ);
+
+                    gridDimX = (n + block.x - 1) / block.x;
                     gridDimY = 1;
                     gridDimZ = 1;
-
                     dim3 grid (gridDimX, gridDimY, gridDimZ);
-                    dim3 block (blockDimX, blockDimY, blockDimZ);
+
 
                     printf("The CUDA kernel <<<(%d,%d,%d), (%d,%d,%d)>>> \n\n\n", gridDimX, gridDimY, gridDimZ, blockDimX, blockDimY, blockDimZ);
                     printf("Initialization and opening of file took %.3e seconds\n", get_delta_time());

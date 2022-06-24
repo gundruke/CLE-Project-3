@@ -1,9 +1,9 @@
 /**
- *  \file word_counter.c (implementation file)
+ *  \file matrix_processing.c (implementation file)
  *
- *  \brief Problem name: Text Processing
+ *  \brief Problem name: Calculating determinant by Gaussian Elimination
  *
- * implementation of the algorithm used for processing the different words
+ * implementation of the algorithm used for calculating determinant with gaussian elimination (Row Based approach)
  *
  *  \author Richard Jonker and Roshan Poudel
  */
@@ -17,15 +17,11 @@ extern size_t bytes_read;
 
 
 /**
- *  \brief Extracts a single UTF8 character from a given FILE buffer.
+ *  \brief Performs Gaussian Elimination - CPU code
  *
- *  Its role is to take a variable length array of bytes that represent a single character from a file.
- *
- *  \param buffer The FILE buffer where the UTF-8 characters are stored
- *  \param utf8char The pointer to the char array where the UTF-8 character will be stored
+ *  \param mat_order Matrix order
+ *  \param mat Matrix pointer
  */
-
-// CPU Code
 int gaussEliminationCPU(int mat_order, double *mat)
 {
     int i, j, k;
@@ -63,6 +59,12 @@ int gaussEliminationCPU(int mat_order, double *mat)
 }
 
 
+/**
+ *  \brief Performs Determinant calculation - CPU code
+ *
+ *  \param mat_order Matrix order
+ *  \param mat Matrix pointer
+ */
 double determinantCPU(int mat_order, double *mat)
 {
     double det = 1;
@@ -78,7 +80,12 @@ double determinantCPU(int mat_order, double *mat)
 
 
 
-// GPU Code
+/**
+ *  \brief Calculate determinant using GPU
+ *
+ *  \param mat_order Matrix order (Number of rows/Columns)
+ *  \param swapCount Number of swaps performed during Gaussian Elimination
+ */
 __device__ double determinant(int mat_order, double *mat, int swapCount) {
     double det = 1;
     int i;
@@ -89,7 +96,15 @@ __device__ double determinant(int mat_order, double *mat, int swapCount) {
     return det * pow(-1, swapCount);
 }
 
-// Common
+
+/**
+ *  \brief Read the matrix from the file
+ *
+ *  \param mat Pointer to store matrix
+ *  \param file File pointer
+ *  \param mat_order Matrix order (Number of rows/Columns)
+ *  \param mat_size Total number of matrices to read
+ */
 void read_matrix(double *mat, FILE *file, int mat_order, int mat_size) {
     for (int j = 0; j < (mat_order * mat_order*mat_size); ++j) {
         bytes_read = fread(&mat[j], sizeof(double), 1, file);

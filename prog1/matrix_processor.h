@@ -1,12 +1,13 @@
 /**
- *  \file word_counter.c (interface file)
+ *  \file matrix_processing.c (implementation file)
  *
- *  \brief Problem name: Text Processing
+ *  \brief Problem name: Calculating determinant by Gaussian Elimination
  *
- * implementation of the algorithm used for processing the different words
+ * implementation of the algorithm used for calculating determinant with gaussian elimination (Row Based approach)
  *
  *  \author Richard Jonker and Roshan Poudel
  */
+
 
 #include <stdio.h>
 

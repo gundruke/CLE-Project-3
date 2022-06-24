@@ -2,11 +2,14 @@
 #include <stdio.h>
 #include <unistd.h>
 #include "matrix_processor.h"
+
+//To compiler
 //nvcc -O2 -Wno-deprecated-gpu-targets -include matrix_processor.c -o part1 main.cu
 
 /*
- * A simple introduction to programming in CUDA. This program prints "Hello
- * World from GPU! from 10 CUDA threads running on the GPU.
+ * Calculates determinant using CUDA and CPU then print them once calculated.
+ * CUDA program to calculate determinant using Gaussian Elimination method
+ * Used the row swapping approach
  */
 
 double *matrix, *cuda_matrix, *single_matrix;
@@ -14,26 +17,55 @@ double *results, *cuda_results, *cpu_results;
 size_t bytes_read;
 
 /** \brief The order of the matrix read*/
-// number of matrices
-int m = 0;
-// matrix order
-int n = 0;
+int m = 0; // number of matrices
+int n = 0; // order of matrices
 
-int mem_size;
-int mat_size;
+int mem_size; // size of memory for matrices of one file
+int mat_size; // size of memory for one matrix
 
+/**
+ *  \brief Calculate the time difference
+ *
+ *  \param mat_order Matrix order (Number of rows/Columns)
+ *  \param swapCount Number of swaps performed during Gaussian Elimination
+ */
 static double get_delta_time(void);
 
+
+/**
+ *  \brief Process the matrix on GPU and stores the determinant on results pointer
+ *
+ *  \param matrix Matrix pointer
+ *  \param matrix_order Order of the matrix passed
+ *  \param results To store the results (determinant) of matrices
+ */
 __global__ void matrixProcessor(double *matrix, int matrix_order, double *results);
 
+
+/**
+ *  \brief Calculates the cosine similarity between the passed vectors
+ *
+ *  \param A first vector
+ *  \param B second vector
+ *  \param Vector_Length length of the vectors passed
+ */
 double cosine_similarity(double *A, double *B, unsigned int Vector_Length);
 
+
+/**
+ *  \brief Print the Help usage when help flag is passed or wrong flags are passed
+ *
+ *  \param cmdName command passed
+ */
 static void printUsage(char *cmdName);
 
+// main function
 int main(int argc, char **argv) {
     /* set up the device */
     int dev = 0;
     int i, j;
+
+    // Grid and Block dimension variables
     unsigned int gridDimX, gridDimY, gridDimZ, blockDimX, blockDimY, blockDimZ;
 
     cudaDeviceProp deviceProp;
@@ -46,14 +78,16 @@ int main(int argc, char **argv) {
     opterr = 0;
 
     do {
+        // Parse the flags passed in the command line
         switch ((opt = getopt(argc, argv, "f:n:h"))) {
+            // -f file_names
             case 'f': /* file name */
                 if (optarg[0] == '-') {
                     fprintf(stderr, "%s: file name is missing\n", basename(argv[0]));
                     printUsage(basename(argv[0]));
                     return EXIT_FAILURE;
                 }
-
+                // Iterate through filenames passed
                 for (i = 2; i < argc; i++) {
 
                     (void) get_delta_time();
@@ -87,14 +121,17 @@ int main(int argc, char **argv) {
                     cpu_results = (double *) malloc(sizeof(double) * m);
                     CHECK(cudaMalloc((void **) &cuda_results, sizeof(double) * m));
 
-                    blockDimX = n;
+                    // Block dimensions
+                    blockDimX = n; // matrix order (Each block thread processes a row)
                     blockDimY = 1;
                     blockDimZ = 1;
+                    // define block dimension
                     dim3 block (blockDimX, blockDimY, blockDimZ);
 
-                    gridDimX = m;
+                    gridDimX = m; // number of matrices (Each block processes a matrix)
                     gridDimY = 1;
                     gridDimZ = 1;
+                    // define grid dimension
                     dim3 grid (gridDimX, gridDimY, gridDimZ);
 
 
@@ -134,7 +171,9 @@ int main(int argc, char **argv) {
                         printf("Determinant for Matrix %d \t: (GPU) %e \t: (CPU) %e \n", j + 1, results[j], cpu_results[j]);
                     }
 
-                    if(cosine_similarity(results,cpu_results,m) >= 0.99999999999999999999999)
+
+                    //printf("%lf\n", cosine_similarity(results, cpu_results, m));
+                    if((float)cosine_similarity(results,cpu_results,m) >= 0.99999999999999999999999)
                         printf("\nGPU and CPU determinants are the same.\n\n");
                     else
                         printf("\nGPU and CPU determinants are different.\n\n");

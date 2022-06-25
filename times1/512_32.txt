@@ -1,0 +1,90 @@
+Currently on file : mat512_32.bin
+Number of matrices to be read    : 512 
+Matrices order                   : 32 
+Initialization and opening of file took : 4.357e-01 seconds
+Reading of all matrices took : 6.589e-03 seconds
+The transfer of 4194304 byte/s from the host to the device took : 2.830e-04 seconds
+Processing of matrix on GPU took : 1.313e-03 seconds
+Processing of matrix on CPU took : 5.363e-03 seconds
+GPU and CPU determinants are different.
+Currently on file : mat512_32.bin
+Number of matrices to be read    : 512 
+Matrices order                   : 32 
+Initialization and opening of file took : 4.804e-01 seconds
+Reading of all matrices took : 6.571e-03 seconds
+The transfer of 4194304 byte/s from the host to the device took : 2.888e-04 seconds
+Processing of matrix on GPU took : 1.329e-03 seconds
+Processing of matrix on CPU took : 5.290e-03 seconds
+GPU and CPU determinants are different.
+Currently on file : mat512_32.bin
+Number of matrices to be read    : 512 
+Matrices order                   : 32 
+Initialization and opening of file took : 4.251e-01 seconds
+Reading of all matrices took : 6.493e-03 seconds
+The transfer of 4194304 byte/s from the host to the device took : 2.810e-04 seconds
+Processing of matrix on GPU took : 1.315e-03 seconds
+Processing of matrix on CPU took : 5.269e-03 seconds
+GPU and CPU determinants are different.
+Currently on file : mat512_32.bin
+Number of matrices to be read    : 512 
+Matrices order                   : 32 
+Initialization and opening of file took : 3.411e-01 seconds
+Reading of all matrices took : 6.533e-03 seconds
+The transfer of 4194304 byte/s from the host to the device took : 2.841e-04 seconds
+Processing of matrix on GPU took : 1.319e-03 seconds
+Processing of matrix on CPU took : 5.274e-03 seconds
+GPU and CPU determinants are different.
+Currently on file : mat512_32.bin
+Number of matrices to be read    : 512 
+Matrices order                   : 32 
+Initialization and opening of file took : 4.677e-01 seconds
+Reading of all matrices took : 6.794e-03 seconds
+The transfer of 4194304 byte/s from the host to the device took : 2.958e-04 seconds
+Processing of matrix on GPU took : 1.320e-03 seconds
+Processing of matrix on CPU took : 5.474e-03 seconds
+GPU and CPU determinants are different.
+Currently on file : mat512_32.bin
+Number of matrices to be read    : 512 
+Matrices order                   : 32 
+Initialization and opening of file took : 4.057e-01 seconds
+Reading of all matrices took : 6.502e-03 seconds
+The transfer of 4194304 byte/s from the host to the device took : 2.839e-04 seconds
+Processing of matrix on GPU took : 1.314e-03 seconds
+Processing of matrix on CPU took : 5.232e-03 seconds
+GPU and CPU determinants are different.
+Currently on file : mat512_32.bin
+Number of matrices to be read    : 512 
+Matrices order                   : 32 
+Initialization and opening of file took : 3.938e-01 seconds
+Reading of all matrices took : 6.837e-03 seconds
+The transfer of 4194304 byte/s from the host to the device took : 2.831e-04 seconds
+Processing of matrix on GPU took : 1.309e-03 seconds
+Processing of matrix on CPU took : 5.538e-03 seconds
+GPU and CPU determinants are different.
+Currently on file : mat512_32.bin
+Number of matrices to be read    : 512 
+Matrices order                   : 32 
+Initialization and opening of file took : 4.411e-01 seconds
+Reading of all matrices took : 6.506e-03 seconds
+The transfer of 4194304 byte/s from the host to the device took : 2.845e-04 seconds
+Processing of matrix on GPU took : 1.315e-03 seconds
+Processing of matrix on CPU took : 5.231e-03 seconds
+GPU and CPU determinants are different.
+Currently on file : mat512_32.bin
+Number of matrices to be read    : 512 
+Matrices order                   : 32 
+Initialization and opening of file took : 4.815e-01 seconds
+Reading of all matrices took : 6.765e-03 seconds
+The transfer of 4194304 byte/s from the host to the device took : 2.847e-04 seconds
+Processing of matrix on GPU took : 1.313e-03 seconds
+Processing of matrix on CPU took : 5.512e-03 seconds
+GPU and CPU determinants are different.
+Currently on file : mat512_32.bin
+Number of matrices to be read    : 512 
+Matrices order                   : 32 
+Initialization and opening of file took : 4.593e-01 seconds
+Reading of all matrices took : 6.777e-03 seconds
+The transfer of 4194304 byte/s from the host to the device took : 2.832e-04 seconds
+Processing of matrix on GPU took : 1.310e-03 seconds
+Processing of matrix on CPU took : 5.567e-03 seconds
+GPU and CPU determinants are different.

@@ -1,0 +1,90 @@
+Currently on file : mat128_128.bin
+Number of matrices to be read    : 128 
+Matrices order                   : 128 
+Initialization and opening of file took : 4.821e-01 seconds
+Reading of all matrices took : 2.665e-02 seconds
+The transfer of 16777216 byte/s from the host to the device took : 1.544e-03 seconds
+Processing of matrix on GPU took : 1.893e-02 seconds
+Processing of matrix on CPU took : 7.083e-02 seconds
+GPU and CPU determinants are the same.
+Currently on file : mat128_128.bin
+Number of matrices to be read    : 128 
+Matrices order                   : 128 
+Initialization and opening of file took : 4.435e-01 seconds
+Reading of all matrices took : 2.717e-02 seconds
+The transfer of 16777216 byte/s from the host to the device took : 1.539e-03 seconds
+Processing of matrix on GPU took : 1.891e-02 seconds
+Processing of matrix on CPU took : 7.214e-02 seconds
+GPU and CPU determinants are the same.
+Currently on file : mat128_128.bin
+Number of matrices to be read    : 128 
+Matrices order                   : 128 
+Initialization and opening of file took : 4.489e-01 seconds
+Reading of all matrices took : 2.681e-02 seconds
+The transfer of 16777216 byte/s from the host to the device took : 1.542e-03 seconds
+Processing of matrix on GPU took : 1.893e-02 seconds
+Processing of matrix on CPU took : 7.145e-02 seconds
+GPU and CPU determinants are the same.
+Currently on file : mat128_128.bin
+Number of matrices to be read    : 128 
+Matrices order                   : 128 
+Initialization and opening of file took : 4.403e-01 seconds
+Reading of all matrices took : 2.661e-02 seconds
+The transfer of 16777216 byte/s from the host to the device took : 1.531e-03 seconds
+Processing of matrix on GPU took : 1.892e-02 seconds
+Processing of matrix on CPU took : 7.074e-02 seconds
+GPU and CPU determinants are the same.
+Currently on file : mat128_128.bin
+Number of matrices to be read    : 128 
+Matrices order                   : 128 
+Initialization and opening of file took : 4.925e-01 seconds
+Reading of all matrices took : 2.649e-02 seconds
+The transfer of 16777216 byte/s from the host to the device took : 1.546e-03 seconds
+Processing of matrix on GPU took : 1.890e-02 seconds
+Processing of matrix on CPU took : 7.065e-02 seconds
+GPU and CPU determinants are the same.
+Currently on file : mat128_128.bin
+Number of matrices to be read    : 128 
+Matrices order                   : 128 
+Initialization and opening of file took : 4.421e-01 seconds
+Reading of all matrices took : 2.669e-02 seconds
+The transfer of 16777216 byte/s from the host to the device took : 1.536e-03 seconds
+Processing of matrix on GPU took : 1.893e-02 seconds
+Processing of matrix on CPU took : 7.086e-02 seconds
+GPU and CPU determinants are the same.
+Currently on file : mat128_128.bin
+Number of matrices to be read    : 128 
+Matrices order                   : 128 
+Initialization and opening of file took : 4.621e-01 seconds
+Reading of all matrices took : 2.646e-02 seconds
+The transfer of 16777216 byte/s from the host to the device took : 1.550e-03 seconds
+Processing of matrix on GPU took : 1.892e-02 seconds
+Processing of matrix on CPU took : 7.065e-02 seconds
+GPU and CPU determinants are the same.
+Currently on file : mat128_128.bin
+Number of matrices to be read    : 128 
+Matrices order                   : 128 
+Initialization and opening of file took : 3.879e-01 seconds
+Reading of all matrices took : 2.819e-02 seconds
+The transfer of 16777216 byte/s from the host to the device took : 1.616e-03 seconds
+Processing of matrix on GPU took : 1.891e-02 seconds
+Processing of matrix on CPU took : 7.368e-02 seconds
+GPU and CPU determinants are the same.
+Currently on file : mat128_128.bin
+Number of matrices to be read    : 128 
+Matrices order                   : 128 
+Initialization and opening of file took : 4.265e-01 seconds
+Reading of all matrices took : 2.760e-02 seconds
+The transfer of 16777216 byte/s from the host to the device took : 1.540e-03 seconds
+Processing of matrix on GPU took : 1.892e-02 seconds
+Processing of matrix on CPU took : 7.359e-02 seconds
+GPU and CPU determinants are the same.
+Currently on file : mat128_128.bin
+Number of matrices to be read    : 128 
+Matrices order                   : 128 
+Initialization and opening of file took : 4.804e-01 seconds
+Reading of all matrices took : 2.788e-02 seconds
+The transfer of 16777216 byte/s from the host to the device took : 1.539e-03 seconds
+Processing of matrix on GPU took : 1.891e-02 seconds
+Processing of matrix on CPU took : 7.412e-02 seconds
+GPU and CPU determinants are the same.
